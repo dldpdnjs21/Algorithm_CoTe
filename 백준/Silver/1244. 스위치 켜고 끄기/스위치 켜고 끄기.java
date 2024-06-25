@@ -28,10 +28,10 @@ public class Main {
 		  if(gender==1) {//남학생 : 시작번호를 기준해서 배수를 스위치
 			  for(int j=startNum; j<=N; j+=startNum) {//j++  j=j+1
 				                     //j+=startNum  j=j+startNum
-				 if(switchArry[j]==0) //현재 스위치 값이 0이라면
-				  switchArry[j]=1;
-				 else
-				  switchArry[j]=0;
+				 //삼항 연산자 :   변수명 = (조건식) ? A : B;
+				 //         A=> 참일때리턴값 , B=> 거짓일때 리턴값 
+				  switchArry[j] = switchArry[j]==0 ? 1:0; 
+				                 //현재 스위치 값이 0이라면 1을 리턴
 				  
 			  }
 		  }else {//여학생: 시작번호를 기준해서 (좌우)대칭되는 가장 가까운 수부터 스위치, 비대칭 전까지
@@ -42,8 +42,7 @@ public class Main {
 			  }					  
 
 			  //1.선택된 스위치는 무조건 변경
-			  if(switchArry[startNum] == 0) switchArry[startNum] = 1;
-			  else switchArry[startNum] = 0;
+			  switchArry[startNum] = switchArry[startNum] == 0 ? 1 : 0;
 			  
 			  for(int j=0,left=startNum-1,  right=startNum+1;  
 					  j<limit-1;  
@@ -53,11 +52,8 @@ public class Main {
 				  
 				  if(switchArry[left] != switchArry[right]) break; //좌우 대칭이지 않다면 종료
 				  
-				  if(switchArry[left] == 0) switchArry[left] = 1;
-				  else switchArry[left] = 0;
-				  
-				  if(switchArry[right] == 0) switchArry[right] = 1;
-				  else switchArry[right] = 0;
+				  switchArry[left] = switchArry[left] == 0 ? 1 : 0;
+				  switchArry[right] = switchArry[right] == 0 ? 1 : 0;
 				  
 			  }
 		  }//여학생 스위치
@@ -69,9 +65,6 @@ public class Main {
 	  //스위칭 결과를 출력
 	  for(int i=1; i<=N; i++) {//스위치 인덱스 표현
 		  System.out.print(switchArry[i]+" ");
-//		  if(i==20)System.out.println();//줄바꿈
-//		  if(i==40)System.out.println();//줄바꿈
-//		  if(i==60)System.out.println();//줄바꿈
 		  if(i%20==0)System.out.println();//줄바꿈
 	  }
       scan.close();
